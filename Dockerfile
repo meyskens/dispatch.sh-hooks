@@ -9,4 +9,6 @@ WORKDIR /opt/hooks/
 
 RUN npm install
 
+ENV DOCKER_TOKEN=""
+
 CMD node app.js
