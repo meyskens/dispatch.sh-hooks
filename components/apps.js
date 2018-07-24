@@ -2,6 +2,7 @@ import mongoose from "./db"
 
 const AppsSchema = new mongoose.Schema({
     name: String,
+    internalName: String,
     repo: String,
     values: Object,
     user: {
