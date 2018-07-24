@@ -1,12 +1,14 @@
 import mongoose from "./db"
 
+
+const Schema = mongoose.Schema
 const AppsSchema = new mongoose.Schema({
     name: String,
     internalName: String,
     repo: String,
     values: Object,
     user: {
-        type: mongoose.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "users",
     },
 }, { collection: "apps" })

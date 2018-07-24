@@ -1,7 +1,7 @@
 
 import mongoose from "mongoose"
 
-mongoose.connect(`mongodb://${process.env.MONGODB_HOST}/${process.env.MONGODB_DB}`)
+mongoose.connect(`mongodb://${process.env.MONGODB_HOST}/${process.env.MONGODB_DB}`, { useNewUrlParser: true })
 mongoose.connection.on("connected", () => {
     console.info("Connected to the database")
 })
@@ -10,4 +10,4 @@ mongoose.connection.on("error", (err) => {
     process.exit(1)
 })
 
-exports = mongoose
+module.exports = mongoose
