@@ -10,5 +10,7 @@ WORKDIR /opt/hooks/
 RUN npm install
 
 ENV DOCKER_TOKEN=""
+ENV MONGODB_HOST=""
+ENV MONGODB_DB=""
 
 CMD node app.js
