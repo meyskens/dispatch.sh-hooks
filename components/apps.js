@@ -6,7 +6,7 @@ const AppsSchema = new mongoose.Schema({
     repo: String,
     values: Object,
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "users",
     },
 }, { collection: "apps" })
