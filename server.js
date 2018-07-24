@@ -4,7 +4,7 @@ import bodyParser from "body-parser"
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(bodyParser.raw())
+app.use(bodyParser.raw({ type: "application/vnd.docker.distribution.events.v1+json" }))
 
 app.get("/", (req, res) => {
     res.send("Duspatch.sh hooks server")
