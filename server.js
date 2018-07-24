@@ -14,9 +14,11 @@ app.all("/docker", (req, res) => {
         return res.status(401).send("Invalid token")
     }
 
-    for (let event of req.body.events) {
-        console.log(event)
-    }
+    //for (let event of req.body.events) {
+    //    console.log(event)
+    //}
+    
+    console.log(req.body)
 
     res.send("ok")
 })
