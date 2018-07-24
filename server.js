@@ -4,6 +4,7 @@ import bodyParser from "body-parser"
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(bodyParser.raw())
 
 app.get("/", (req, res) => {
     res.send("Duspatch.sh hooks server")
@@ -11,12 +12,14 @@ app.get("/", (req, res) => {
 
 app.all("/docker", (req, res) => {
     if (req.header("Authorization") !== `Bearer ${process.env.DOCKER_TOKEN}`) {
-        res.status(401).send("Invalid token")
+        return res.status(401).send("Invalid token")
     }
 
-    for (let event of req.body.events) {
-        console.log(event)
-    }
+    //for (let event of req.body.events) {
+    //    console.log(event)
+    //}
+    
+    console.log(req.body)
 
     res.send("ok")
 })
