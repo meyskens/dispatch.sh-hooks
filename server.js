@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
 
 app.all("/docker", (req, res) => {
     if (req.header("Authorization") !== `Bearer ${process.env.DOCKER_TOKEN}`) {
-        res.status(401).send("Invalid token")
+        return res.status(401).send("Invalid token")
     }
 
     for (let event of req.body.events) {
