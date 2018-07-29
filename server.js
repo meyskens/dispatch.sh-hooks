@@ -1,6 +1,7 @@
 import express from "express"
 import bodyParser from "body-parser"
 import * as apps from "./components/apps"
+import * as updates from "./components/updates"
 import { HelmetController } from "./components/helmet"
 
 const helmet = new HelmetController(process.env.HELMET_URL, process.env.HELMET_TOKEN)
@@ -31,6 +32,7 @@ app.all("/docker", wrap(async(req, res) => {
             if (appEntry) {
                 appEntry.values.image = `${repo}:${tag}`
                 await helmet.create(appEntry.internalName, appEntry.values)
+                await updates.add(appEntry._id, tag)
             }
         }
     }
