@@ -47,7 +47,7 @@ app.all("/docker", wrap(async(req, res) => {
 
                 appEntry.values.image = `harbor.dispatch.sh/${repo}:${tag}`
                 try {
-                    await helmet.create(appEntry.internalName, appEntry.values)
+                    await helmet.create(appEntry.internalName.toLowerCase(), appEntry.values)
                 } catch (error) {
                     // just log this as Docker will keep retrying till a 200 which overloaded the kubernetes api
                     console.log(error)
