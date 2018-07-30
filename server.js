@@ -14,7 +14,7 @@ app.use(bodyParser.raw({ type: "application/vnd.docker.distribution.events.v1+js
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 
 app.get("/", (req, res) => {
-    res.send("Duspatch.sh hooks server")
+    res.send("Dispatch.sh hooks server")
 })
 
 app.all("/docker", wrap(async(req, res) => {
