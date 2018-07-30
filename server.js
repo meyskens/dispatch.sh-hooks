@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(bodyParser.raw({ type: "application/vnd.docker.distribution.events.v1+json" }))
 
-const wrap = fn => (...args) => fn(...args).catch(args[2]);
+const wrap = fn => (...args) => fn(...args).catch(args[2])
 
 app.get("/", (req, res) => {
     res.send("Duspatch.sh hooks server")
