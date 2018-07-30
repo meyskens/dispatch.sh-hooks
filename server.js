@@ -31,7 +31,7 @@ app.all("/docker", wrap(async(req, res) => {
             const appEntry = apps.getAppForRepo(repo)
             if (appEntry) {
                 let oldTag = ""
-                if (appEntry.values.image) {
+                if ((appEntry.values | {}).image) {
                     const imageParts = appEntry.values.image.split(":")
                     if (imageParts.length === 2) {
                         oldTag = imageParts[1]
