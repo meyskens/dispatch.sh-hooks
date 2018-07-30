@@ -18,6 +18,7 @@ export class HelmetController {
             },
         }).on("complete", function (returnData) {
             if (returnData instanceof Error || returnData.result !== "success") {
+                console.log(JSON.stringify(returnData))
                 reject(returnData)
                 return
             }
@@ -37,6 +38,7 @@ export class HelmetController {
             data: JSON.stringify({ values }),
         }).on("complete", function (returnData) {
             if (returnData instanceof Error) {
+                console.log(JSON.stringify(returnData))
                 reject(returnData)
                 return
             }
