@@ -43,7 +43,7 @@ app.all("/docker", wrap(async(req, res) => {
                 }
 
                 appEntry.values.image = `${repo}:${tag}`
-                await helmet.create(appEntry.internalName, appEntry.values)
+                //await helmet.create(appEntry.internalName, appEntry.values)
                 
                 await apps.updateImage(appEntry._id, appEntry.values.image )
                 await updates.add(appEntry._id, oldTag, tag)
