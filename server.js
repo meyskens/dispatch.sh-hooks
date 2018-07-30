@@ -28,7 +28,7 @@ app.all("/docker", wrap(async(req, res) => {
             const repo = event.target.repository
             const tag = event.target.tag
             
-            const appEntry = apps.getAppForRepo(repo)
+            const appEntry = await apps.getAppForRepo(repo)
             console.log(JSON.stringify(appEntry))
             if (appEntry) {
                 let oldTag = ""
