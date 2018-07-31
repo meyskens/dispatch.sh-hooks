@@ -2,9 +2,8 @@ import express from "express"
 import bodyParser from "body-parser"
 import * as apps from "./components/apps"
 import * as updates from "./components/updates"
-import { HelmetController } from "./components/helmet"
+import * as builder from "./components/builder"
 
-const helmet = new HelmetController(process.env.HELMET_URL, process.env.HELMET_TOKEN)
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -35,25 +34,22 @@ app.all("/docker", wrap(async(req, res) => {
             const appEntry = await apps.getAppForRepo(repo)
             if (appEntry) {
                 let oldTag = ""
-                if (!appEntry.values) {
-                    appEntry.values = {}
-                }
-                if (appEntry.values.image) {
-                    const imageParts = appEntry.values.image.split(":")
+                if (appEntry.image) {
+                    const imageParts = appEntry.image.split(":")
                     if (imageParts.length === 2) {
                         oldTag = imageParts[1]
                     } 
                 }
 
-                appEntry.values.image = `harbor.dispatch.sh/${repo}:${tag}`
+                appEntry.image = `harbor.dispatch.sh/${repo}:${tag}`
                 try {
-                    await helmet.create(appEntry.internalName.toLowerCase(), appEntry.values)
+                    await builder.buildChartAndDeploy(appEntry)
                 } catch (error) {
                     // just log this as Docker will keep retrying till a 200 which overloaded the kubernetes api
                     console.log(error)
                 }
                 
-                await apps.updateImage(appEntry._id, appEntry.values.image )
+                await apps.updateImage(appEntry._id, appEntry.image )
                 await updates.add(appEntry._id, oldTag, tag)
             }
         }

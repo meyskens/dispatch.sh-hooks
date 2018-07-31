@@ -5,7 +5,10 @@ const AppsSchema = new mongoose.Schema({
     name: String,
     internalName: String,
     repo: String,
-    values: Object,
+    domain: String,
+    altDomains: [ String ],
+    image: String,
+    replicas: Number,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
@@ -16,7 +19,6 @@ AppsSchema.index({
     user: 1,
 })
 
-
 const AppsModel = mongoose.model("apps", AppsSchema, "apps")
 
 export const getAppForRepo = (repo) => {
@@ -26,5 +28,5 @@ export const getAppForRepo = (repo) => {
 }
 
 export const updateImage = (id, image) => {
-    return AppsModel.update({ _id: ObjectId(id) }, { "values.image": image }).exec()
+    return AppsModel.update({ _id: ObjectId(id) }, { image }).exec()
 }
