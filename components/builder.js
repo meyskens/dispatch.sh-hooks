@@ -15,7 +15,7 @@ export const buildChartAndDeploy = async (app) => {
 
     for (let secret of secrets) {
         values.secrets.push({
-            name: secret.path.replace(/[^a-zA-Z0-9]/g, ""),
+            name: secret.path.replace(/[^a-zA-Z0-9]/g, "").toLowerCase(),
             path: secret.path,
             value: secret.content,
         })
