@@ -1,4 +1,4 @@
-import mongoose from "../db"
+import mongoose from "./db"
 
 const ObjectId = mongoose.Types.ObjectId
 const EnvVarsSchema = new mongoose.Schema({
