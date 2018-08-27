@@ -20,7 +20,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0-rc.1",
     "@babel/preset-env": "^7.0.0-rc.1",
-    "babel-eslint": "^8.2.6",
+    "babel-eslint": "^9.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-root-import": "^6.1.0",
     "babel-plugin-syntax-class-properties": "^6.13.0",
