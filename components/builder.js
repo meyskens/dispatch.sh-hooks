@@ -11,7 +11,7 @@ export const buildChartAndDeploy = async (app) => {
     const dbs = await databases.getForApp(app._id)
 
     const values = {
-        time: (new Date()).getTime(),
+        time: "" + (new Date()).getTime(),
         image: app.image,
         replicas: app.replicas,
         domain: app.domain,
