@@ -21,5 +21,5 @@ const EnvVarsModel = mongoose.model("envvars", EnvVarsSchema, "envvars")
 export const getForApp = (app) => {
     return EnvVarsModel.find({
         app: ObjectId(app),
-    })
+    }).exec()
 }

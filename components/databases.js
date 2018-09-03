@@ -27,7 +27,7 @@ DatabasesSchema.index({
 const DatabasesModel = mongoose.model("databases", DatabasesSchema, "databases")
 
 export const getForApp = (app) => {
-    return DatabasesModel.findOne({
+    return DatabasesModel.find({
         app: ObjectId(app),
-    })
+    }).exec()
 }
