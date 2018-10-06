@@ -41,7 +41,7 @@ app.all("/docker", wrap(async(req, res) => {
                     } 
                 }
 
-                appEntry.image = `harbor.dispatch.sh/${repo}:${tag}`
+                appEntry.image = `registry.dispatch.sh/${repo}:${tag}`
                 try {
                     await builder.buildChartAndDeploy(appEntry)
                 } catch (error) {
