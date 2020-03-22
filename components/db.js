@@ -1,7 +1,7 @@
 
 import mongoose from "mongoose"
 
-mongoose.connect(`mongodb://${process.env.MONGODB_HOST}/${process.env.MONGODB_DB}`, { useNewUrlParser: true })
+mongoose.connect(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}/${process.env.MONGODB_DB}`, { useNewUrlParser: true })
 mongoose.connection.on("connected", () => {
     console.info("Connected to the database")
 })
