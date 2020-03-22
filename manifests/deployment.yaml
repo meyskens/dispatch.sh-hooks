@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,7 +7,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: registry
+      app: hooks
   template:
     metadata:
       labels:
@@ -17,7 +16,7 @@ spec:
       containers:
         - name: hooks
           imagePullPolicy: Always
-          image: meyskens/dispatch.sh-hooks:arm64-master
+          image: meyskens/dispatch.sh-hooks:amd64-master
           env:
             - name: MONGODB_HOST
               value: mongodb:27017
