@@ -1,0 +1,21 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hooks
+  annotations:
+    cert-manager.io/cluster-issuer: le-cf-issuer
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+    - hosts:
+        - hooks.dispatch.sh
+      secretName: registry-tls
+  rules:
+  - host: hooks.dispatch.sh
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hooks
+          servicePort: 80

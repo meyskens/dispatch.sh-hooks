@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hooks
+  namespace: dispatch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registry
+  template:
+    metadata:
+      labels:
+        app: hooks
+    spec:
+      containers:
+        - name: hooks
+          imagePullPolicy: Always
+          image: meyskens/dispatch.sh-hooks:arm64-master
+          env:
+            - name: MONGODB_HOST
+              value: mongodb:27017
+            - name: MONGODB_DB
+              value: dispatch
+            - name: MONGODB_USERNAME
+              value: dispatch
+            - name: MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb
+                  key: mongodb-password
+            - name: DOCKER_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: hooks
+                  key: DOCKER_TOKEN
+            - name: HELMET_URL
+              value: "https://controller.dispatch.sh"
+            - name: HELMET_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: dispatch-controller
+                  key: AUTH_TOKEN
+          ports:
+            - containerPort: 80
