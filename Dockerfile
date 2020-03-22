@@ -1,5 +1,5 @@
 ARG ARCHREPO
-FROM ${ARCHREPO}/node:10-stretch
+FROM ${ARCHREPO}/node:12
 
 ARG QEMU_ARCH
 COPY qemu-${QEMU_ARCH}-static /usr/bin/
