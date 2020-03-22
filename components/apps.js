@@ -9,6 +9,10 @@ const AppsSchema = new mongoose.Schema({
     altDomains: [ String ],
     image: String,
     replicas: Number,
+    forceHTTPS: {
+        type: Boolean,
+        default: true,
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",

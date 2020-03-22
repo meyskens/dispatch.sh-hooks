@@ -16,6 +16,7 @@ export const buildChartAndDeploy = async (app) => {
         replicas: app.replicas,
         domain: app.domain,
         altDomains: app.altDomains,
+        forceHTTPS: app.forceHTTPS,
         secrets: [],
         envvars: [],
         mongodb: {
